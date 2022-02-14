@@ -1,6 +1,8 @@
 import flatpickr from 'flatpickr';
 // Дополнительный импорт стилей
 import 'flatpickr/dist/flatpickr.min.css';
+import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 let timerTime = null;
 let isStart = false;
@@ -30,7 +32,7 @@ const options = {
         timerTime = selectedDates[0] - options.defaultDate;
 
         if (timerTime <= 0) {
-            window.alert('Выбранная дата должна быть больше текущей!');
+            window.alert('Please choose a date in the future');
             return;
         }
         switchDisabledBtn(isStart);
