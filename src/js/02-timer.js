@@ -19,7 +19,8 @@ const refs = {
 
 refs.btnStart.addEventListener('click', onBtnStartClick)
 
-switchDisabledBtn(!isStart);
+const switchBtn = refs.btnStart.disabled;
+// switchBtn(!isStart);
 
 const options = {
     enableTime: true,
@@ -33,7 +34,7 @@ const options = {
             window.alert('Please choose a date in the future');
             return;
         }
-        switchDisabledBtn(isStart);
+        switchBtn(isStart);
     },
 };
 
@@ -42,8 +43,9 @@ new flatpickr('#datetime-picker', options);
 function onBtnStartClick() {
     redrawValues();
 
-    switchDisabledBtn(!isStart);
-    switchDisabledInput(!isStart)
+    switchDisabled(!isStart)
+        // switchDisabledBtn(!isStart);
+        // switchDisabledInput(!isStart)
 
     isStart = !isStart;
 
@@ -68,13 +70,18 @@ function redrawValues() {
     refs.secondsLаbel.textContent = convertTime.seconds;
 }
 
-function switchDisabledInput(value) {
+function switchDisabled(value) {
     refs.inputData.disabled = value;
-}
-
-function switchDisabledBtn(value) {
     refs.btnStart.disabled = value;
 }
+
+// function switchDisabledInput(value) {
+//     refs.inputData.disabled = value;
+// }
+
+// function switchDisabledBtn(value) {
+//     refs.btnStart.disabled = value;
+// }
 
 function convertMs(ms) {
     // Number of milliseconds per unit of time
